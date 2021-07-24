@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Menu = styled.div`
   position: fixed;
+  top: 0;
   width: 100%;
   background-color: var(--gray);
 `;
@@ -52,7 +53,12 @@ export const ContainerInput = styled.div`
   button {
     margin-top: 1rem;
     width: 120px;
-    height: 30px;
     font-size: 1rem;
   }
+`;
+
+export const TextContainer = styled.div`
+  max-width: 1100px;
+  margin: 5rem auto;
+  padding: 1.5rem;
 `;

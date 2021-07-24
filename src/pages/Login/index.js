@@ -18,13 +18,13 @@ import api from "../../services/api";
 export const Login = () => {
   const schema = yup.object().shape({
     email: yup.string().required("Campo obrigatório").email("Email inválido"),
-    password: yup
-      .string()
-      .required("Campo obrigatório")
-      .matches(
-        /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$/,
-        "Senha fraca"
-      ),
+    //password: yup
+    //  .string()
+    //  .required("Campo obrigatório")
+    //  .matches(
+    //    /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$/,
+    //    "Senha fraca"
+    //  ),
   });
 
   const {
@@ -36,13 +36,14 @@ export const Login = () => {
   const history = useHistory();
 
   const onSubmitFunction = (data) => {
-    console.log(data);
     api.post("/sessions", data).then((res) => {
-      console.log(res);
+      const { token } = res.data;
+      const { id } = res.data.user;
       localStorage.clear();
-      localStorage.setItem("authToken", res.data.token);
-      localStorage.setItem("authId", res.data.user.id);
-      history.push("/dashboard");
+      localStorage.setItem("authToken", JSON.stringify(token));
+      localStorage.setItem("authId", JSON.stringify(id));
+
+      return history.push("/dashboard");
     });
   };
 

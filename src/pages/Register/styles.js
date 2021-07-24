@@ -3,19 +3,18 @@ import RegisterBackground from "../../assets/register.svg";
 
 export const Container = styled.div`
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
-  height: 100vh;
   background-color: var(--background-gray);
 `;
 
 export const Content = styled.div`
   width: 100%;
   max-width: 700px;
-  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 1.2rem 0;
 
   form {
     display: flex;
@@ -26,7 +25,7 @@ export const Content = styled.div`
     h1 {
       font-size: 3rem;
       font-family: "Karla", sans-serif;
-      padding-bottom: 3rem;
+      // padding-bottom: 3rem;
     }
 
     button {
@@ -48,7 +47,7 @@ export const Content = styled.div`
 export const Background = styled.div`
   @media (min-width: 1100px) {
     flex: 1;
-    height: 100vh;
+    //height: 100vh;
     background: url(${RegisterBackground}) no-repeat center, var(--blue);
     background-size: contain;
   }

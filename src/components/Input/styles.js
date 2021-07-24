@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Container = styled.div`
   display: flex;
@@ -9,11 +9,20 @@ export const Container = styled.div`
     position: relative;
     width: 30px;
     margin-right: 0.5rem;
+
     svg {
       position: absolute;
-      top: 28px;
+      bottom: 6px;
     }
   }
+
+  ${(props) =>
+    props.error &&
+    css`
+      svg {
+        color: var(--red);
+      }
+    `};
 `;
 
 export const Content = styled.div`
@@ -21,6 +30,12 @@ export const Content = styled.div`
   flex: 1;
   flex-direction: column;
   align-items: flex-start;
+
+  div {
+    span {
+      color: var(--red);
+    }
+  }
 
   input {
     width: 100%;

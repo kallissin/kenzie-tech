@@ -5,8 +5,8 @@ import { useHistory } from "react-router-dom";
 export const Home = () => {
   const history = useHistory();
 
-  const handleClick = () => {
-    history.push("/register");
+  const handleClick = (page) => {
+    history.push(page);
   };
 
   return (
@@ -15,10 +15,10 @@ export const Home = () => {
         <h1>Kenzie Tech</h1>
         <p>Registre as suas Tecnologias e o nível de experiencia</p>
         <div>
-          <Button whiteSchema={"gray"} onClick={handleClick}>
+          <Button whiteSchema={"gray"} onClick={() => handleClick("/register")}>
             Cadastre-se
           </Button>
-          <Button>Login</Button>
+          <Button onClick={() => handleClick("/login")}>Login</Button>
         </div>
       </Content>
     </Container>

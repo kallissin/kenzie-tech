@@ -5,13 +5,9 @@ import { Input } from "../../components/Input";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+//import { useState } from "react";
 import { useHistory } from "react-router-dom";
-import {
-  IoPersonOutline,
-  IoMailOutline,
-  IoLockClosedOutline,
-} from "react-icons/io5";
+import { IoMailOutline, IoLockClosedOutline } from "react-icons/io5";
 
 import api from "../../services/api";
 

@@ -6,19 +6,25 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 import {
   IoPersonOutline,
   IoMailOutline,
   IoLockClosedOutline,
 } from "react-icons/io5";
 
+import api from "../../services/api";
+import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
+
+toast.configure();
 export const Register = () => {
   const schema = yup.object().shape({
     name: yup.string().required("Campo obrigatório"),
     email: yup.string().required("Campo obrigatório").email("Email inválido"),
     bio: yup.string().required("Campo obrigatório"),
     contact: yup.string().required("Campo obrigatório"),
-    courseModule: yup.string().required("Campo obrigatório"),
+    course_module: yup.string().required("Campo obrigatório"),
     password: yup
       .string()
       .required("Campo obrigatório")
@@ -38,8 +44,37 @@ export const Register = () => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
+  const history = useHistory();
+
   const onSubmitFunction = (data) => {
     console.log(data);
+    const { passwordConfirm, ...newData } = data;
+
+    api
+      .post("/users", newData)
+      .then((_) => {
+        toast.success("Usuário registrado com sucesso!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        history.push("/dashboard");
+      })
+      .catch((_) =>
+        toast.error("Email já cadastrado!", {
+          posição: "superior direito",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          arrastável: true,
+          progresso: undefined,
+        })
+      );
   };
 
   return (
@@ -90,8 +125,8 @@ export const Register = () => {
             placeholder="Ex: 2º Modulo(Frontend avançado)"
             autoComplete="off"
             register={register}
-            name="courseModule"
-            error={errors.courseModule?.message}
+            name="course_module"
+            error={errors.course_module?.message}
           />
           <Input
             icon={IoLockClosedOutline}

@@ -6,11 +6,14 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 import {
   IoPersonOutline,
   IoMailOutline,
   IoLockClosedOutline,
 } from "react-icons/io5";
+
+import api from "../../services/api";
 
 export const Login = () => {
   const schema = yup.object().shape({
@@ -30,8 +33,17 @@ export const Login = () => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
+  const history = useHistory();
+
   const onSubmitFunction = (data) => {
     console.log(data);
+    api.post("/sessions", data).then((res) => {
+      console.log(res);
+      localStorage.clear();
+      localStorage.setItem("authToken", res.data.token);
+      localStorage.setItem("authId", res.data.user.id);
+      history.push("/dashboard");
+    });
   };
 
   return (

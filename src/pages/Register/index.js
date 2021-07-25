@@ -28,10 +28,7 @@ export const Register = () => {
     password: yup
       .string()
       .required("Campo obrigatório")
-      .matches(
-        /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$/,
-        "Senha fraca"
-      ),
+      .min(6, "Mínimo 6 dígitos"),
     passwordConfirm: yup
       .string()
       .required("Campo obrigatório")
@@ -62,7 +59,7 @@ export const Register = () => {
           draggable: true,
           progress: undefined,
         });
-        history.push("/dashboard");
+        return history.push("/login");
       })
       .catch((_) =>
         toast.error("Email já cadastrado!", {

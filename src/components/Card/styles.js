@@ -7,7 +7,7 @@ export const Container = styled.div`
   justify-content: space-around;
   height: 250px;
   border-radius: 8px;
-  width: 260px;
+  width: 250px;
   padding: 1rem 1rem;
   border: 2px solid var(--black);
 `;

@@ -5,22 +5,15 @@ import { Input } from "../../components/Input";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-//import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { IoMailOutline, IoLockClosedOutline } from "react-icons/io5";
-
+import { Redirect } from "react-router-dom";
 import api from "../../services/api";
 
-export const Login = () => {
+export const Login = ({ authenticate, setAuthenticate }) => {
   const schema = yup.object().shape({
     email: yup.string().required("Campo obrigatório").email("Email inválido"),
-    //password: yup
-    //  .string()
-    //  .required("Campo obrigatório")
-    //  .matches(
-    //    /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$/,
-    //    "Senha fraca"
-    //  ),
+    password: yup.string().required("Campo obrigatório"),
   });
 
   const {
@@ -38,10 +31,14 @@ export const Login = () => {
       localStorage.clear();
       localStorage.setItem("authToken", JSON.stringify(token));
       localStorage.setItem("authId", JSON.stringify(id));
-
+      setAuthenticate(true);
       return history.push("/dashboard");
     });
   };
+
+  if (authenticate) {
+    return <Redirect to="/dashboard" />;
+  }
 
   return (
     <Container>

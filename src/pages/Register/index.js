@@ -5,8 +5,7 @@ import { Input } from "../../components/Input";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-//import { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Redirect } from "react-router-dom";
 import {
   IoPersonOutline,
   IoMailOutline,
@@ -18,7 +17,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
 
 toast.configure();
-export const Register = () => {
+export const Register = ({ authenticate }) => {
   const schema = yup.object().shape({
     name: yup.string().required("Campo obrigatório"),
     email: yup.string().required("Campo obrigatório").email("Email inválido"),
@@ -73,6 +72,10 @@ export const Register = () => {
         })
       );
   };
+
+  if (authenticate) {
+    return <Redirect to="/dashboard" />;
+  }
 
   return (
     <Container>

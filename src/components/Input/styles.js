@@ -31,10 +31,6 @@ export const Content = styled.div`
   flex-direction: column;
   align-items: flex-start;
 
-  div {
-    span {
-      color: var(--red);
-    }
   }
 
   input {

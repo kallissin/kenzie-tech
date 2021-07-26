@@ -7,11 +7,12 @@ import {
   ContainerInput,
   Container,
   TextContainer,
+  ContainerInputSelect,
 } from "./styles";
 import { useForm } from "react-hook-form";
 import { SiReactos } from "react-icons/si";
-import { GiBattery100 } from "react-icons/gi";
 import { ImExit } from "react-icons/im";
+import { toast } from "react-toastify";
 import { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import api from "../../services/api";
@@ -20,8 +21,12 @@ export const Dashboard = ({ authenticate, setAuthenticate }) => {
   const [techs, setTechs] = useState([]);
   const [token] = useState(JSON.parse(localStorage.getItem("authToken")) || "");
   const [id] = useState(JSON.parse(localStorage.getItem("authId")) || "");
-
+  const [isOnline, setIsOnline] = useState(true);
   const { register, handleSubmit } = useForm();
+
+  const [inputValue, setInputValue] = useState("Iniciante");
+
+  toast.configure();
 
   const loadTech = () => {
     api
@@ -34,9 +39,29 @@ export const Dashboard = ({ authenticate, setAuthenticate }) => {
 
   useEffect(() => {
     loadTech();
+
+    return () => {
+      fnc_cleanUp();
+    };
   }, []);
 
+  const fnc_cleanUp = () => {
+    setTechs([]);
+  };
+
   const onSubmitFunction = (data) => {
+    console.log(data);
+    if (data.title === "") {
+      return toast.error("Digite um valor válido", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
     api
       .post("/users/techs", data, {
         headers: {
@@ -44,10 +69,32 @@ export const Dashboard = ({ authenticate, setAuthenticate }) => {
         },
       })
       .then((res) => {
-        console.log("registrado com sucesso");
+        toast.success("Tecnologia cadastrada!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
         loadTech();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        toast.error("Tecnologia já esta cadastrada!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      });
+  };
+
+  const handleChange = (event) => {
+    setInputValue(event.target.value);
   };
 
   const handleDelete = (id) => {
@@ -58,6 +105,15 @@ export const Dashboard = ({ authenticate, setAuthenticate }) => {
         },
       })
       .then((res) => {
+        toast.warning("Tecnologia deletada!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
         loadTech();
       })
       .catch((err) => console.log(err));
@@ -90,13 +146,22 @@ export const Dashboard = ({ authenticate, setAuthenticate }) => {
                 label="Tecnologia"
                 icon={SiReactos}
               />
-              <Input
-                placeholder="Ex: básico"
-                register={register}
-                name="status"
-                label="Nível de experiencia"
-                icon={GiBattery100}
-              />
+              <ContainerInputSelect>
+                <div>
+                  <label>Nível de experiencia</label>
+                </div>
+                <div>
+                  <select
+                    {...register("status")}
+                    value={inputValue}
+                    onChange={(e) => handleChange(e)}
+                  >
+                    <option value="Iniciante">Iniciante</option>
+                    <option value="Intermediário">Intermediário</option>
+                    <option value="Avançado">Avançado</option>
+                  </select>
+                </div>
+              </ContainerInputSelect>
               <Button type="submit">Enviar</Button>
             </ContainerInput>
           </form>

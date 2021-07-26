@@ -17,6 +17,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
 
 toast.configure();
+
 export const Register = ({ authenticate }) => {
   const schema = yup.object().shape({
     name: yup.string().required("Campo obrigatório"),

@@ -22,7 +22,6 @@ export const Container = styled.div`
 export const Background = styled.div`
   height: 200px;
   width: 340px;
-  /*flex: 1;*/
   background: url(${NotFound}) no-repeat center;
   background-size: contain;
 

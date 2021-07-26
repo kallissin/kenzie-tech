@@ -1,6 +1,6 @@
 import { Container, Background } from "./styles";
 import { Button } from "../../components/Button";
-import { useHistory, Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 export const NotFound = ({ authenticate }) => {
   const history = useHistory();

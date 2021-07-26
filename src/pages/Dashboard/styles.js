@@ -91,3 +91,24 @@ export const TextContainer = styled.div`
     }
   }
 `;
+
+export const ContainerInputSelect = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  div:last-child {
+    margin-top: 0.25rem;
+    select {
+      height: 40px;
+      width: 240px;
+      border-radius: 6px;
+    border: 2px solid var(--black);
+    background-color: var(--gray-Light);
+    padding-left: 1rem;
+    color: var(--black);
+
+    &::placeholder {
+      color: var(--gray);
+    }
+  }
+`;

@@ -1,11 +1,12 @@
 import styled from "styled-components";
 import RegisterBackground from "../../assets/register.svg";
 
-export const Container = styled.div`
+export const Container = styled.main`
   display: flex;
   align-items: stretch;
   justify-content: center;
   background-color: var(--background-gray);
+  min-height: 100vh;
 `;
 
 export const Content = styled.div`

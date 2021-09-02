@@ -8,4 +8,5 @@ export const Container = styled.button`
   border-radius: 8px;
   background-color: ${(props) => (props.whiteSchema ? "#DBDBDB" : "#0B1256")};
   color: ${(props) => (props.whiteSchema ? "#201F1F" : "#DBDBDB")};
+  cursor: pointer;
 `;

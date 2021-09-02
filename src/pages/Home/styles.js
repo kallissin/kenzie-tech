@@ -32,4 +32,42 @@ export const Content = styled.div`
       margin-left: 2rem;
     }
   }
+
+  @media all and (min-width: 1000px) {
+    max-width: 620px;
+
+    h1 {
+      font-size: 4.5rem;
+    }
+
+    p {
+      font-size: 2.5rem;
+    }
+
+    div {
+      button {
+        font-size: 1.5rem;
+        height: 60px;
+      }
+    }
+  }
+
+  @media all and (min-height: 1080px) {
+    max-width: 800px;
+
+    h1 {
+      font-size: 6rem;
+    }
+
+    p {
+      font-size: 3rem;
+    }
+
+    div {
+      button {
+        font-size: 2.2rem;
+        height: 80px;
+      }
+    }
+  }
 `;

@@ -26,7 +26,6 @@ export const Login = ({ authenticate, setAuthenticate }) => {
   const history = useHistory();
 
   const onSubmitFunction = (data) => {
-    console.log(data);
     api
       .post("/sessions", data)
       .then((res) => {
@@ -35,30 +34,12 @@ export const Login = ({ authenticate, setAuthenticate }) => {
         localStorage.clear();
         localStorage.setItem("authToken", JSON.stringify(token));
         localStorage.setItem("authId", JSON.stringify(id));
-        toast.success("Bem vindo", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        toast.success("Bem vindo");
         setAuthenticate(true);
 
         return history.push("/dashboard");
       })
-      .catch((err) =>
-        toast.error("Email ou senha inválido!", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        })
-      );
+      .catch((err) => toast.error("Email ou senha inválido!"));
   };
 
   if (authenticate) {

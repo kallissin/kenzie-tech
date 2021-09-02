@@ -50,28 +50,10 @@ export const Register = ({ authenticate }) => {
     api
       .post("/users", newData)
       .then((_) => {
-        toast.success("Usuário registrado com sucesso!", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        toast.success("Usuário registrado com sucesso!");
         return history.push("/login");
       })
-      .catch((_) =>
-        toast.error("Email já cadastrado!", {
-          posição: "superior direito",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          arrastável: true,
-          progresso: undefined,
-        })
-      );
+      .catch((_) => toast.error("Email já cadastrado!"));
   };
 
   if (authenticate) {

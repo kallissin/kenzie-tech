@@ -52,15 +52,7 @@ export const Dashboard = ({ authenticate, setAuthenticate }) => {
   const onSubmitFunction = (data) => {
     console.log(data);
     if (data.title === "") {
-      return toast.error("Digite um valor válido", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      return toast.error("Digite um valor válido");
     }
     api
       .post("/users/techs", data, {
@@ -69,27 +61,11 @@ export const Dashboard = ({ authenticate, setAuthenticate }) => {
         },
       })
       .then((res) => {
-        toast.success("Tecnologia cadastrada!", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        toast.success("Tecnologia cadastrada!");
         loadTech();
       })
       .catch((err) => {
-        toast.error("Tecnologia já esta cadastrada!", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        toast.error("Tecnologia já esta cadastrada!");
       });
   };
 
@@ -105,15 +81,7 @@ export const Dashboard = ({ authenticate, setAuthenticate }) => {
         },
       })
       .then((res) => {
-        toast.warning("Tecnologia deletada!", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        toast.warning("Tecnologia deletada!");
         loadTech();
       })
       .catch((err) => console.log(err));

@@ -1,10 +1,15 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 import api from "../../services/api";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
+
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
+  const [token, setToken] = useState(
+    JSON.parse(localStorage.getItem("authToken")) || ""
+  );
+
   const history = useHistory();
 
   const createUser = (data) => {
@@ -17,7 +22,7 @@ export const UserProvider = ({ children }) => {
       .catch((_) => toast.error("Email já cadastrado!"));
   };
 
-  const login = (data, setAuthenticate) => {
+  const login = (data) => {
     api
       .post("/sessions", data)
       .then((res) => {
@@ -26,8 +31,8 @@ export const UserProvider = ({ children }) => {
         localStorage.clear();
         localStorage.setItem("authToken", JSON.stringify(token));
         localStorage.setItem("authId", JSON.stringify(id));
+        setToken(token);
         toast.success("Bem vindo");
-        setAuthenticate(true);
 
         return history.push("/dashboard");
       })
@@ -35,7 +40,7 @@ export const UserProvider = ({ children }) => {
   };
 
   return (
-    <UserContext.Provider value={{ createUser, login }}>
+    <UserContext.Provider value={{ createUser, login, token, setToken }}>
       {children}
     </UserContext.Provider>
   );

@@ -5,7 +5,6 @@ import { Input } from "../../components/Input";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { Redirect } from "react-router-dom";
 import {
   IoPersonOutline,
   IoMailOutline,
@@ -14,7 +13,7 @@ import {
 import { useContext } from "react";
 import { UserContext } from "../../providers/users";
 
-export const Register = ({ authenticate }) => {
+export const Register = () => {
   const schema = yup.object().shape({
     name: yup.string().required("Campo obrigatório"),
     email: yup.string().required("Campo obrigatório").email("Email inválido"),
@@ -43,10 +42,6 @@ export const Register = ({ authenticate }) => {
     const { passwordConfirm, ...newData } = data;
     createUser(newData);
   };
-
-  if (authenticate) {
-    return <Redirect to="/dashboard" />;
-  }
 
   return (
     <Container>

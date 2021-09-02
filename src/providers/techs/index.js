@@ -1,12 +1,14 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import api from "../../services/api";
 import { toast } from "react-toastify";
+import { UserContext } from "../users";
+
 export const TechsContext = createContext();
 
 export const TechsProvider = ({ children }) => {
-  const [token] = useState(JSON.parse(localStorage.getItem("authToken")) || "");
-
   const [techs, setTechs] = useState([]);
+
+  const { token } = useContext(UserContext);
 
   const loadTech = (id) => {
     api

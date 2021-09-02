@@ -1,19 +1,16 @@
 import { Background, Container, Content } from "./styles";
 
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-
 import { IoMailOutline, IoLockClosedOutline } from "react-icons/io5";
-import { Redirect } from "react-router-dom";
-
 import { useContext } from "react";
 import { UserContext } from "../../providers/users";
 
-export const Login = ({ authenticate, setAuthenticate }) => {
+export const Login = () => {
   const schema = yup.object().shape({
     email: yup.string().required("Campo obrigatório").email("Email inválido"),
     password: yup.string().required("Campo obrigatório"),
@@ -26,14 +23,12 @@ export const Login = ({ authenticate, setAuthenticate }) => {
   } = useForm({ resolver: yupResolver(schema) });
 
   const { login } = useContext(UserContext);
+  const history = useHistory();
 
   const onSubmitFunction = (data) => {
-    login(data, setAuthenticate);
+    login(data);
+    history.push("/dashboard");
   };
-
-  if (authenticate) {
-    return <Redirect to="/dashboard" />;
-  }
 
   return (
     <Container>

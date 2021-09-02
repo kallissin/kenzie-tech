@@ -17,8 +17,9 @@ import { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import { useContext } from "react";
 import { TechsContext } from "../../providers/techs";
+import { UserContext } from "../../providers/users";
 
-export const Dashboard = ({ authenticate, setAuthenticate }) => {
+export const Dashboard = () => {
   const { register, handleSubmit } = useForm();
   const [id, setId] = useState(
     JSON.parse(localStorage.getItem("authId")) || ""
@@ -26,6 +27,7 @@ export const Dashboard = ({ authenticate, setAuthenticate }) => {
   const [inputValue, setInputValue] = useState("Iniciante");
 
   const { techs, loadTech, createTech, deleteTech } = useContext(TechsContext);
+  const { setToken } = useContext(UserContext);
 
   useEffect(() => {
     setId(JSON.parse(localStorage.getItem("authId")) || "");
@@ -45,14 +47,9 @@ export const Dashboard = ({ authenticate, setAuthenticate }) => {
 
   const handleExit = () => {
     localStorage.clear();
-    setAuthenticate(false);
-
+    setToken("");
     return <Redirect to="/login" />;
   };
-
-  if (!authenticate) {
-    return <Redirect to="/" />;
-  }
 
   return (
     <>

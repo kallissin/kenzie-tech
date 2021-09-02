@@ -1,16 +1,16 @@
 import { Container, Background } from "./styles";
 import { Button } from "../../components/Button";
 import { useHistory } from "react-router-dom";
-
-export const NotFound = ({ authenticate }) => {
+import { useContext } from "react";
+import { TechsContext } from "../../providers/techs";
+export const NotFound = () => {
   const history = useHistory();
+  const { token } = useContext(TechsContext);
 
   const handleClick = () => {
-    if (authenticate) {
-      console.log("aqui");
+    if (!!token) {
       return history.push("/dashboard");
     }
-    console.log("aqui n");
 
     return history.push("/");
   };

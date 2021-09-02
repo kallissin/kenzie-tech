@@ -1,15 +1,17 @@
 import { Background, Container, Content } from "./styles";
-import { toast } from "react-toastify";
+
 import { Link } from "react-router-dom";
 import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { useHistory } from "react-router-dom";
+
 import { IoMailOutline, IoLockClosedOutline } from "react-icons/io5";
 import { Redirect } from "react-router-dom";
-import api from "../../services/api";
+
+import { useContext } from "react";
+import { UserContext } from "../../providers/users";
 
 export const Login = ({ authenticate, setAuthenticate }) => {
   const schema = yup.object().shape({
@@ -23,23 +25,10 @@ export const Login = ({ authenticate, setAuthenticate }) => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
-  const history = useHistory();
+  const { login } = useContext(UserContext);
 
   const onSubmitFunction = (data) => {
-    api
-      .post("/sessions", data)
-      .then((res) => {
-        const { token } = res.data;
-        const { id } = res.data.user;
-        localStorage.clear();
-        localStorage.setItem("authToken", JSON.stringify(token));
-        localStorage.setItem("authId", JSON.stringify(id));
-        toast.success("Bem vindo");
-        setAuthenticate(true);
-
-        return history.push("/dashboard");
-      })
-      .catch((err) => toast.error("Email ou senha inválido!"));
+    login(data, setAuthenticate);
   };
 
   if (authenticate) {

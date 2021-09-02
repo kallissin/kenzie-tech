@@ -15,81 +15,38 @@ import { ImExit } from "react-icons/im";
 import { toast } from "react-toastify";
 import { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
-import api from "../../services/api";
+import { useContext } from "react";
+import { TechsContext } from "../../providers/techs";
 
 export const Dashboard = ({ authenticate, setAuthenticate }) => {
-  const [techs, setTechs] = useState([]);
-  const [token] = useState(JSON.parse(localStorage.getItem("authToken")) || "");
-  const [id] = useState(JSON.parse(localStorage.getItem("authId")) || "");
-  const [isOnline, setIsOnline] = useState(true);
   const { register, handleSubmit } = useForm();
-
+  const [id, setId] = useState(
+    JSON.parse(localStorage.getItem("authId")) || ""
+  );
   const [inputValue, setInputValue] = useState("Iniciante");
 
-  toast.configure();
-
-  const loadTech = () => {
-    api
-      .get(`/users/${id}`)
-      .then((res) => {
-        setTechs(res.data.techs);
-      })
-      .catch((err) => console.log(err));
-  };
+  const { techs, loadTech, createTech, deleteTech } = useContext(TechsContext);
 
   useEffect(() => {
-    loadTech();
-
-    return () => {
-      fnc_cleanUp();
-    };
+    setId(JSON.parse(localStorage.getItem("authId")) || "");
+    loadTech(id);
   }, []);
 
-  const fnc_cleanUp = () => {
-    setTechs([]);
-  };
-
   const onSubmitFunction = (data) => {
-    console.log(data);
     if (data.title === "") {
       return toast.error("Digite um valor válido");
     }
-    api
-      .post("/users/techs", data, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((res) => {
-        toast.success("Tecnologia cadastrada!");
-        loadTech();
-      })
-      .catch((err) => {
-        toast.error("Tecnologia já esta cadastrada!");
-      });
+    createTech(data);
   };
 
   const handleChange = (event) => {
     setInputValue(event.target.value);
   };
 
-  const handleDelete = (id) => {
-    api
-      .delete(`/users/techs/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((res) => {
-        toast.warning("Tecnologia deletada!");
-        loadTech();
-      })
-      .catch((err) => console.log(err));
-  };
-
   const handleExit = () => {
     localStorage.clear();
     setAuthenticate(false);
+
     return <Redirect to="/login" />;
   };
 
@@ -137,14 +94,15 @@ export const Dashboard = ({ authenticate, setAuthenticate }) => {
       </Container>
       <TextContainer>
         <section>
-          {techs.map((tech) => (
-            <Card
-              key={tech.id}
-              tech={tech.title}
-              exp={tech.status}
-              onClick={() => handleDelete(tech.id)}
-            />
-          ))}
+          {!!techs &&
+            techs.map((tech) => (
+              <Card
+                key={tech.id}
+                tech={tech.title}
+                exp={tech.status}
+                onClick={() => deleteTech(tech.id)}
+              />
+            ))}
         </section>
       </TextContainer>
     </>

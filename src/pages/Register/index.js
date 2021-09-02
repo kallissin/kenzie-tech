@@ -5,18 +5,14 @@ import { Input } from "../../components/Input";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { useHistory, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import {
   IoPersonOutline,
   IoMailOutline,
   IoLockClosedOutline,
 } from "react-icons/io5";
-
-import api from "../../services/api";
-import "react-toastify/dist/ReactToastify.css";
-import { toast } from "react-toastify";
-
-toast.configure();
+import { useContext } from "react";
+import { UserContext } from "../../providers/users";
 
 export const Register = ({ authenticate }) => {
   const schema = yup.object().shape({
@@ -41,19 +37,11 @@ export const Register = ({ authenticate }) => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
-  const history = useHistory();
+  const { createUser } = useContext(UserContext);
 
   const onSubmitFunction = (data) => {
-    console.log(data);
     const { passwordConfirm, ...newData } = data;
-
-    api
-      .post("/users", newData)
-      .then((_) => {
-        toast.success("Usuário registrado com sucesso!");
-        return history.push("/login");
-      })
-      .catch((_) => toast.error("Email já cadastrado!"));
+    createUser(newData);
   };
 
   if (authenticate) {

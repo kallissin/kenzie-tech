@@ -38,7 +38,7 @@ export const Dashboard = () => {
     if (data.title === "") {
       return toast.error("Digite um valor válido");
     }
-    createTech(data);
+    createTech(data, id);
   };
 
   const handleChange = (event) => {

@@ -19,7 +19,7 @@ export const TechsProvider = ({ children }) => {
       .catch((err) => console.log(err));
   };
 
-  const createTech = (data) => {
+  const createTech = (data, id) => {
     api
       .post("/users/techs", data, {
         headers: {
@@ -28,7 +28,7 @@ export const TechsProvider = ({ children }) => {
       })
       .then((res) => {
         toast.success("Tecnologia cadastrada!");
-        loadTech();
+        loadTech(id);
       })
       .catch((err) => {
         toast.error("Tecnologia já esta cadastrada!");
@@ -44,7 +44,7 @@ export const TechsProvider = ({ children }) => {
       })
       .then((res) => {
         toast.warning("Tecnologia deletada!");
-        loadTech();
+        loadTech(id);
       })
       .catch((err) => console.log(err));
   };

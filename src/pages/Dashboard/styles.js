@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const Header = styled.header`
   padding: 1rem 0;
   background-color: var(--background-gray);
   position: relative;
@@ -53,7 +53,8 @@ export const MenuContainer = styled.div`
 
 export const TextContainer = styled.div`
   max-width: 1100px;
-  margin: 1rem auto;
+  margin: 0 auto;
+  padding-top: 80px;
 
   section {
     display: flex;

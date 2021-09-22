@@ -26,6 +26,10 @@ const GlobalStyle = createGlobalStyle`
         text-decoration: none;
     }
 
+    ul, li {
+        list-style: none;
+    }
+
     :root {
         --black: #201F1F;
         --red: #FA1616;

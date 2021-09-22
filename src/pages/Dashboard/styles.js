@@ -23,11 +23,6 @@ export const MenuContainer = styled.div`
   align-items: center;
   justify-content: center;
 
-  @media all and (min-width: 1100px) {
-    flex-direction: row;
-    justify-content: space-between;
-  }
-
   form {
     div {
       svg {
@@ -41,37 +36,18 @@ export const MenuContainer = styled.div`
       font-size: 2rem;
       color: var(--blue);
       text-shadow: 2px 2px #e8e8e8;
+    }
+  }
 
-      @media all and (min-width: 1100px) {
+  @media all and (min-width: 1100px) {
+    flex-direction: row;
+    justify-content: space-between;
+
+    div {
+      h1 {
         font-size: 3rem;
       }
     }
-  }
-`;
-
-export const ContainerInput = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  @media all and (min-width: 769px) {
-    flex-direction: row;
-  }
-
-  > div {
-    width: 240px;
-    padding-top: 1rem;
-
-    @media all and (min-width: 769px) {
-      margin-right: 1.2rem;
-      padding-top: 0;
-    }
-  }
-
-  button {
-    margin-top: 1rem;
-    width: 120px;
-    font-size: 1rem;
   }
 `;
 
@@ -87,24 +63,6 @@ export const TextContainer = styled.div`
 
     div {
       margin: 0.5rem;
-    }
-  }
-`;
-
-export const ContainerInputSelect = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  div:last-child {
-    margin-top: 0.25rem;
-    select {
-      height: 40px;
-      width: 240px;
-      border-radius: 6px;
-      border: 2px solid var(--black);
-      background-color: var(--gray-Light);
-      padding-left: 1rem;
-      color: var(--black);
     }
   }
 `;

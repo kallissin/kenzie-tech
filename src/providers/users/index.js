@@ -10,6 +10,10 @@ export const UserProvider = ({ children }) => {
     JSON.parse(localStorage.getItem("authToken")) || ""
   );
 
+  const [authId, setAuthId] = useState(
+    JSON.parse(localStorage.getItem("authId")) || ""
+  );
+
   const history = useHistory();
 
   const createUser = (data) => {
@@ -32,6 +36,7 @@ export const UserProvider = ({ children }) => {
         localStorage.setItem("authToken", JSON.stringify(token));
         localStorage.setItem("authId", JSON.stringify(id));
         setToken(token);
+        setAuthId(id);
         toast.success("Bem vindo");
 
         return history.push("/dashboard");
@@ -40,7 +45,9 @@ export const UserProvider = ({ children }) => {
   };
 
   return (
-    <UserContext.Provider value={{ createUser, login, token, setToken }}>
+    <UserContext.Provider
+      value={{ createUser, login, token, setToken, authId, setAuthId }}
+    >
       {children}
     </UserContext.Provider>
   );

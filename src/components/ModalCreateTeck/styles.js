@@ -1,24 +1,42 @@
 import styled from "styled-components";
 
-export const Form = styled.form``;
+export const Display = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+`;
+
+export const Container = styled.div`
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const Form = styled.form`
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  max-height: 300px;
+  max-width: 350px;
+`;
 
 export const ContainerInput = styled.div`
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  @media all and (min-width: 769px) {
-    flex-direction: row;
-  }
+  justify-content: space-evenly;
+  padding: 1rem;
 
   > div {
     width: 240px;
-    padding-top: 1rem;
-
-    @media all and (min-width: 769px) {
-      margin-right: 1.2rem;
-      padding-top: 0;
-    }
   }
 
   button {

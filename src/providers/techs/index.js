@@ -35,7 +35,7 @@ export const TechsProvider = ({ children }) => {
       });
   };
 
-  const deleteTech = (id) => {
+  const deleteTech = (id, authId) => {
     api
       .delete(`/users/techs/${id}`, {
         headers: {
@@ -44,7 +44,7 @@ export const TechsProvider = ({ children }) => {
       })
       .then((res) => {
         toast.warning("Tecnologia deletada!");
-        loadTech(id);
+        loadTech(authId);
       })
       .catch((err) => console.log(err));
   };

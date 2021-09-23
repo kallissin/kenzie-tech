@@ -3,11 +3,13 @@ import { MdClose, MdMenu } from "react-icons/md";
 import { useState, useContext } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { UserContext } from "../../providers/users";
+import ModalCreateTeck from "../ModalCreateTeck";
 
 const Menu = () => {
   const [open, setOpen] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
-  const { setToken } = useContext(UserContext);
+  const { setToken, setAuthId } = useContext(UserContext);
 
   const handleOpen = (open) => {
     setOpen(!open);
@@ -17,7 +19,13 @@ const Menu = () => {
     handleOpen(open);
     localStorage.clear();
     setToken("");
+    setAuthId("");
     return <Redirect to="/login" />;
+  };
+
+  const handleModalCreateTeck = (open) => {
+    setShowModal(!showModal);
+    handleOpen(open);
   };
 
   return (
@@ -40,7 +48,7 @@ const Menu = () => {
         <Nav>
           <ul>
             <li>
-              <Link to="/" onClick={() => handleOpen(open)}>
+              <Link to="/dashboard" onClick={() => handleModalCreateTeck(open)}>
                 Add Technology
               </Link>
             </li>
@@ -52,6 +60,8 @@ const Menu = () => {
           </ul>
         </Nav>
       </ContainerMenu>
+
+      {showModal && <ModalCreateTeck />}
     </>
   );
 };

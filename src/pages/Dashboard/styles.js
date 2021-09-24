@@ -16,7 +16,7 @@ export const Header = styled.header`
 `;
 
 export const MenuContainer = styled.div`
-  max-width: 1100px;
+  max-width: 1064px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -52,7 +52,7 @@ export const MenuContainer = styled.div`
 `;
 
 export const TextContainer = styled.div`
-  max-width: 1100px;
+  max-width: 1064px;
   margin: 0 auto;
   padding-top: 80px;
 

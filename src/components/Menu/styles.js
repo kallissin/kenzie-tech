@@ -29,9 +29,9 @@ export const ContainerMenu = styled.div`
     color: #000;
   }
   @media all and (min-width: 1000px) {
-    max-width: 1100px;
+    max-width: 1064px;
     margin: 0 auto;
-    padding: 0 1rem;
+    padding: 0;
     width: 100%;
     flex-direction: row;
     height: 100%;

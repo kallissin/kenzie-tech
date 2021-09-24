@@ -66,4 +66,9 @@ export const TextContainer = styled.div`
       margin: 0.5rem;
     }
   }
+  @media all and (min-width: 1000px) {
+    section {
+      justify-content: flex-start;
+    }
+  }
 `;

@@ -61,10 +61,6 @@ export const TextContainer = styled.div`
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-
-    div {
-      margin: 0.5rem;
-    }
   }
   @media all and (min-width: 1000px) {
     section {

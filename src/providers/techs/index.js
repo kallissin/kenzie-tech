@@ -49,9 +49,22 @@ export const TechsProvider = ({ children }) => {
       .catch((err) => console.log(err));
   };
 
+  const updateTech = (data, id, authId) => {
+    api
+      .put(`/users/techs/${id}`, data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        toast.success("Tecnologia atualiza!");
+        loadTech(authId);
+      });
+  };
+
   return (
     <TechsContext.Provider
-      value={{ loadTech, techs, setTechs, createTech, deleteTech }}
+      value={{ loadTech, techs, setTechs, createTech, deleteTech, updateTech }}
     >
       {children}
     </TechsContext.Provider>

@@ -27,6 +27,7 @@ export const Dashboard = () => {
             techs.map((tech) => (
               <Card
                 key={tech.id}
+                id={tech.id}
                 tech={tech.title}
                 exp={tech.status}
                 onClick={() => deleteTech(tech.id, authId)}

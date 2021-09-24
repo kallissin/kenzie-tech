@@ -8,6 +8,7 @@ export const Container = styled.div`
   padding: 1rem 1rem;
   box-shadow: 2px 5px 5px var(--black);
   background-color: var(--gray-Light);
+  margin: 0.5rem;
 
   .icon-edit {
     position: absolute;

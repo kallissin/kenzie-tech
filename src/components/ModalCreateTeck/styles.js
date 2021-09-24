@@ -35,8 +35,8 @@ export const ContainerInput = styled.div`
   justify-content: space-evenly;
   padding: 1rem;
 
-  > div {
-    width: 240px;
+  div {
+    width: 100%;
   }
 
   button {
@@ -48,13 +48,30 @@ export const ContainerInput = styled.div`
 
 export const ContainerInputSelect = styled.div`
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
-  div:last-child {
-    margin-top: 0.25rem;
+  .containerIcon {
+    position: relative;
+    width: 30px;
+    height: 100%;
+    margin-right: 0.5rem;
+
+    svg {
+      position: absolute;
+      bottom: 6px;
+    }
+  }
+
+  .contentInputSelect {
+    div {
+      padding-bottom: 0.25rem;
+    }
+
     select {
       height: 40px;
-      width: 240px;
+      /*width: 240px;*/
+      width: 100%;
       border-radius: 6px;
       border: 2px solid var(--black);
       background-color: var(--gray-Light);

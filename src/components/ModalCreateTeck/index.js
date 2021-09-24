@@ -13,6 +13,7 @@ import { UserContext } from "../../providers/users";
 import { useState, useContext } from "react";
 
 import { SiReactos } from "react-icons/si";
+import { RiArrowUpDownFill } from "react-icons/ri";
 import { Button } from "../Button";
 import { Input } from "../Input";
 
@@ -49,10 +50,13 @@ const ModalCreateTeck = () => {
               icon={SiReactos}
             />
             <ContainerInputSelect>
-              <div>
-                <label>Nível de experiencia</label>
+              <div className="containerIcon">
+                <RiArrowUpDownFill size={30} />
               </div>
-              <div>
+              <div className="contentInputSelect">
+                <div>
+                  <label>Nível de experiencia</label>
+                </div>
                 <select
                   {...register("status")}
                   value={inputValue}

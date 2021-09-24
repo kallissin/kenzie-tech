@@ -31,8 +31,6 @@ export const Content = styled.div`
   flex-direction: column;
   align-items: flex-start;
 
-  }
-
   input {
     width: 100%;
     margin-top: 0.25rem;

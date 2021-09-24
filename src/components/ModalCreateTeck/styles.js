@@ -8,7 +8,7 @@ export const Display = styled.div`
   right: 0;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.4);
-  z-index: 1;
+  z-index: 2;
 `;
 
 export const Container = styled.div`
@@ -19,12 +19,46 @@ export const Container = styled.div`
   justify-content: center;
 `;
 
-export const Form = styled.form`
-  background-color: white;
+export const Content = styled.div`
+  background-color: var(--white);
+  border-radius: 8px;
+  box-shadow: 4px 4px 2px rgba(0, 0, 0, 0.4);
   width: 100%;
   height: 100%;
-  max-height: 300px;
-  max-width: 350px;
+  max-height: 400px;
+  max-width: 400px;
+
+  svg {
+    color: var(--blue);
+    position: absolute;
+  }
+
+  .box-title {
+    position: relative;
+    background-color: var(--blue);
+    border-radius: 8px 8px 0 0;
+    padding: 1rem;
+    height: 60px;
+  }
+
+  .icon-close {
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+
+    path {
+      stroke: var(--white);
+    }
+  }
+
+  .text {
+    font-weight: lighter;
+    color: var(--white);
+  }
+
+  form {
+    height: 340px;
+  }
 `;
 
 export const ContainerInput = styled.div`
@@ -44,6 +78,12 @@ export const ContainerInput = styled.div`
     width: 120px;
     font-size: 1rem;
   }
+
+  @media all and (min-width: 1000px) {
+    button {
+      width: 160px;
+    }
+  }
 `;
 
 export const ContainerInputSelect = styled.div`
@@ -58,7 +98,6 @@ export const ContainerInputSelect = styled.div`
     margin-right: 0.5rem;
 
     svg {
-      position: absolute;
       bottom: 6px;
     }
   }
@@ -70,7 +109,6 @@ export const ContainerInputSelect = styled.div`
 
     select {
       height: 40px;
-      /*width: 240px;*/
       width: 100%;
       border-radius: 6px;
       border: 2px solid var(--black);

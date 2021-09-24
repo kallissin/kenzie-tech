@@ -6,6 +6,7 @@ const GlobalStyle = createGlobalStyle`
         padding: 0;
         box-sizing: border-box;
         border: 0;
+        outline: none;
     }
 
     body {
@@ -18,7 +19,6 @@ const GlobalStyle = createGlobalStyle`
     }
 
     button {
-        outline: none;
         cursor: pointer;
     }
 
@@ -32,6 +32,7 @@ const GlobalStyle = createGlobalStyle`
 
     :root {
         --black: #201F1F;
+        --white: #ffffff;
         --red: #FA1616;
         --blueLight: #03776F;
         --gray: #363535;

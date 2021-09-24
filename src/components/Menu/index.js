@@ -61,7 +61,9 @@ const Menu = () => {
         </Nav>
       </ContainerMenu>
 
-      {showModal && <ModalCreateTeck />}
+      {showModal && (
+        <ModalCreateTeck showModal={showModal} setShowModal={setShowModal} />
+      )}
     </>
   );
 };

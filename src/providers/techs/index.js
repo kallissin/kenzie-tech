@@ -28,6 +28,7 @@ export const TechsProvider = ({ children }) => {
       })
       .then((res) => {
         toast.success("Tecnologia cadastrada!");
+        console.log(id)
         loadTech(id);
       })
       .catch((err) => {

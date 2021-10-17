@@ -6,11 +6,14 @@ import { useEffect } from "react";
 import { useContext } from "react";
 import { TechsContext } from "../../providers/techs";
 import { UserContext } from "../../providers/users";
+import { useParams } from "react-router";
 
 export const Dashboard = () => {
   const { techs, loadTech, deleteTech } = useContext(TechsContext);
 
-  const { authId } = useContext(UserContext);
+  //const { authId } = useContext(UserContext);
+
+  const { authId } = useParams()
 
   useEffect(() => {
     console.log(authId);

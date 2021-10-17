@@ -13,7 +13,7 @@ export const Routes = () => {
       <Route exact path="/" component={Home} />
       <Route exact path="/register" component={Register} />
       <Route path="/login" component={Login} />
-      <Route isPrivate path="/dashboard" component={Dashboard} />
+      <Route isPrivate path="/dashboard/:authId" component={Dashboard} />
       <Route component={NotFound} />
     </Switch>
   );

@@ -9,29 +9,28 @@ import {
 import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import { TechsContext } from "../../providers/techs";
-import { UserContext } from "../../providers/users";
 import { useState, useContext } from "react";
-
 import { SiReactos } from "react-icons/si";
 import { RiArrowUpDownFill } from "react-icons/ri";
 import { GrFormClose } from "react-icons/gr";
 import { Button } from "../Button";
 import { Input } from "../Input";
+import { useParams } from "react-router";
 
 const ModalCreateTeck = ({ showModal, setShowModal }) => {
   const [inputValue, setInputValue] = useState("Iniciante");
 
   const { createTech } = useContext(TechsContext);
-  const { authId } = useContext(UserContext);
-
+  
   const { register, handleSubmit } = useForm();
+  const { authId } = useParams()
 
   const onSubmitFunction = (data) => {
-    console.log(data);
     if (data.title === "") {
       return toast.error("Digite um valor válido");
     }
     createTech(data, authId);
+    setShowModal(!showModal)
   };
 
   const handleChange = (event) => {

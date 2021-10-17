@@ -5,14 +5,14 @@ import { Button } from "../Button";
 import { useForm } from "react-hook-form";
 import { useState, useContext } from "react";
 import { TechsContext } from "../../providers/techs";
-import { UserContext } from "../../providers/users";
+import { useParams } from "react-router";
 
 const ModalUpdateTeck = ({ showModal, setShowModal, tech, id }) => {
   const [inputValue, setInputValue] = useState("Iniciante");
 
-  const { authId } = useContext(UserContext);
+  //const { authId } = useContext(UserContext);
   const { updateTech } = useContext(TechsContext);
-
+const { authId } = useParams()
   const { register, handleSubmit } = useForm();
 
   const handleClosed = () => {
@@ -25,7 +25,7 @@ const ModalUpdateTeck = ({ showModal, setShowModal, tech, id }) => {
 
   const onSubmitFunction = (data) => {
     updateTech(data, id, authId);
-    console.log(data, id, authId);
+    setShowModal(!showModal)
   };
 
   return (

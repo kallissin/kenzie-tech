@@ -9,8 +9,7 @@ const Menu = () => {
   const [open, setOpen] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
-  const { setToken, setAuthId } = useContext(UserContext);
-
+  const { setToken } = useContext(UserContext);
   const handleOpen = (open) => {
     setOpen(!open);
   };
@@ -19,7 +18,6 @@ const Menu = () => {
     handleOpen(open);
     localStorage.clear();
     setToken("");
-    setAuthId("");
     return <Redirect to="/login" />;
   };
 
@@ -39,7 +37,7 @@ const Menu = () => {
       </Button>
       <ContainerMenu className={open ? "open" : ""}>
         <LogoNavigation
-          to="/dashboard"
+          to={location => (location)}
           onClick={() => handleOpen(open)}
           className="logo"
         >
@@ -48,7 +46,7 @@ const Menu = () => {
         <Nav>
           <ul>
             <li>
-              <Link to="/dashboard" onClick={() => handleModalCreateTeck(open)}>
+              <Link to={location => (location)} onClick={() => handleModalCreateTeck(open)}>
                 Add Technology
               </Link>
             </li>

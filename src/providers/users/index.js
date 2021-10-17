@@ -10,10 +10,6 @@ export const UserProvider = ({ children }) => {
     JSON.parse(localStorage.getItem("authToken")) || ""
   );
 
-  const [authId, setAuthId] = useState(
-    JSON.parse(localStorage.getItem("authId")) || ""
-  );
-
   const history = useHistory();
 
   const createUser = (data) => {
@@ -36,17 +32,16 @@ export const UserProvider = ({ children }) => {
         localStorage.setItem("authToken", JSON.stringify(token));
         localStorage.setItem("authId", JSON.stringify(id));
         setToken(token);
-        setAuthId(id);
         toast.success("Bem vindo");
 
-        return history.push("/dashboard");
+        return history.push(`/dashboard/${id}`);
       })
       .catch((err) => toast.error("Email ou senha inválido!"));
   };
 
   return (
     <UserContext.Provider
-      value={{ createUser, login, token, setToken, authId, setAuthId }}
+      value={{ createUser, login, token, setToken }}
     >
       {children}
     </UserContext.Provider>

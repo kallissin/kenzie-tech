@@ -1,6 +1,6 @@
 import { Form } from "./styles";
 
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
@@ -25,10 +25,10 @@ const FormLogin = () => {
 
   const { login } = useContext(UserContext);
   const history = useHistory();
-
+  const { id } = useParams()
   const onSubmitFunction = (data) => {
     login(data);
-    history.push("/dashboard");
+    history.push(`/dashboard/${id}`);
   };
   return (
     <Form onSubmit={handleSubmit(onSubmitFunction)}>

@@ -2,6 +2,7 @@
 import { Card } from "../../components/Card";
 import { TextContainer } from "./styles";
 import Header from "../../components/Header";
+import ButtonFloating from "../../components/ButtonFloating";
 import { useEffect } from "react";
 import { useContext } from "react";
 import { TechsContext } from "../../providers/techs";
@@ -21,7 +22,7 @@ export const Dashboard = () => {
   return (
     <>
       <Header />
-      <TextContainer>
+      <TextContainer id="scroller">
         <section>
           {!!techs &&
             techs.map((tech) => (
@@ -35,6 +36,7 @@ export const Dashboard = () => {
             ))}
         </section>
       </TextContainer>
+      <ButtonFloating />
     </>
   );
 };

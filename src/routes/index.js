@@ -5,6 +5,7 @@ import { Register } from "../pages/Register";
 import { Login } from "../pages/Login";
 import { Dashboard } from "../pages/Dashboard";
 import { NotFound } from "../pages/NotFound";
+import Profile from "../pages/Profile";
 import Route from "./route";
 
 export const Routes = () => {
@@ -13,6 +14,7 @@ export const Routes = () => {
       <Route exact path="/" component={Home} />
       <Route exact path="/register" component={Register} />
       <Route path="/login" component={Login} />
+      <Route isPrivate path="/profile/:authId" component={Profile} />
       <Route isPrivate path="/dashboard/:authId" component={Dashboard} />
       <Route component={NotFound} />
     </Switch>

@@ -21,7 +21,6 @@ export const Content = styled.div`
 export const Background = styled.div`
   @media (min-width: 1100px) {
     flex: 1;
-    //height: 100vh;
     background: url(${RegisterBackground}) no-repeat center, var(--blue);
     background-size: contain;
   }

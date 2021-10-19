@@ -10,8 +10,8 @@ function App() {
       <GlobalStyle />
       <Routes />
       <ToastContainer
-        position="top-right"
-        autoClose={4000}
+        position="top-center"
+        autoClose={2000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
@@ -20,8 +20,6 @@ function App() {
         draggable
         pauseOnHover
       />
-      {/* Same as */}
-      <ToastContainer />
     </>
   );
 }

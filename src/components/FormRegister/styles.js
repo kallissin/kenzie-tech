@@ -9,7 +9,6 @@ export const Form = styled.form`
   h1 {
     font-size: 3rem;
     font-family: "Karla", sans-serif;
-    // padding-bottom: 3rem;
   }
 
   button {
@@ -23,6 +22,21 @@ export const Form = styled.form`
 
     span {
       color: var(--red);
+    }
+  }
+
+  @media all and (min-width: 1000px) {
+    animation: ease-in 1s reverse both running slidein;
+
+    @keyframes slidein {
+      from {
+        transform: translate(0);
+        opacity: 1;
+      }
+      to {
+        transform: translate(50px);
+        opacity: 0;
+      }
     }
   }
 `;

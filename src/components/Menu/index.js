@@ -1,9 +1,11 @@
-import { ContainerMenu, Button, LogoNavigation, Nav } from "./styles";
+import { ContainerMenu, Button, LogoNavigation, Nav, Icon } from "./styles";
 import { MdClose, MdMenu } from "react-icons/md";
 import { useState, useContext } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { UserContext } from "../../providers/users";
 import ModalCreateTeck from "../ModalCreateTeck";
+import { HiViewGridAdd } from "react-icons/hi";
+import { ImExit } from "react-icons/im";
 
 const Menu = () => {
   const [open, setOpen] = useState(false);
@@ -37,7 +39,7 @@ const Menu = () => {
       </Button>
       <ContainerMenu className={open ? "open" : ""}>
         <LogoNavigation
-          to={location => (location)}
+          to={(location) => location}
           onClick={() => handleOpen(open)}
           className="logo"
         >
@@ -46,12 +48,21 @@ const Menu = () => {
         <Nav>
           <ul>
             <li>
-              <Link to={location => (location)} onClick={() => handleModalCreateTeck(open)}>
+              <Link
+                to={(location) => location}
+                onClick={() => handleModalCreateTeck(open)}
+              >
+                <Icon>
+                  <HiViewGridAdd />
+                </Icon>
                 Add Technology
               </Link>
             </li>
             <li>
               <Link to="/" onClick={() => handleExit(open)}>
+                <Icon>
+                  <ImExit />
+                </Icon>
                 Exit
               </Link>
             </li>

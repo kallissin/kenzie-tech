@@ -25,4 +25,19 @@ export const Form = styled.form`
       color: var(--red);
     }
   }
+
+  @media all and (min-width: 1000px) {
+    animation: ease-in 1s reverse both running slidein;
+
+    @keyframes slidein {
+      from {
+        transform: translate(0);
+        opacity: 1;
+      }
+      to {
+        transform: translate(50px);
+        opacity: 0;
+      }
+    }
+  }
 `;

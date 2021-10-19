@@ -44,10 +44,10 @@ export const LogoNavigation = styled(Link)`
   color: var(--blue);
   text-shadow: 2px 2px #e8e8e8;
   font-weight: bold;
-  font-size: 2rem;
+  font-size: 1.7rem;
 
   @media all and (min-width: 1000px) {
-    font-size: 3rem;
+    font-size: 2rem;
   }
 `;
 
@@ -59,7 +59,7 @@ export const Nav = styled.nav`
     gap: 0.5rem;
 
     li {
-      padding: 0.5rem;
+      padding: 1rem 0.5rem;
       font-size: 1.2rem;
       border-bottom: 1px solid var(--blue);
 
@@ -70,6 +70,9 @@ export const Nav = styled.nav`
       a {
         color: var(--blue);
         font-weight: bold;
+        display: flex;
+        align-items: center;
+        flex-direction: row;
       }
     }
   }
@@ -86,12 +89,27 @@ export const Nav = styled.nav`
         border: none;
         line-height: 0;
         transition: 300ms all ease-in-out;
+        padding: 1rem;
 
         &:hover {
-          border-radius: 8px 8px 0 0;
+          border-radius: 6px;
           background-color: var(--background-gray);
         }
       }
+    }
+  }
+`;
+
+export const Icon = styled.span`
+  padding-right: 2rem;
+
+  svg {
+    font-size: 2rem;
+  }
+  @media all and (min-width: 1000px) {
+    padding-right: 0;
+    svg {
+      display: none;
     }
   }
 `;

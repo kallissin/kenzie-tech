@@ -1,5 +1,4 @@
 import styled from "styled-components";
-
 export const Header = styled.header`
   padding: 1rem 0;
   background-color: var(--background-gray);
@@ -52,11 +51,19 @@ export const MenuContainer = styled.div`
 `;
 
 export const TextContainer = styled.div`
-  max-width: 1064px;
-  margin: 0 auto;
+  overflow: auto;
+  height: 100vh;
   padding-top: 80px;
-
+  background-image: linear-gradient(
+    45deg,
+    var(--background-blue),
+    var(--background-gray),
+    var(--blue)
+  );
   section {
+    max-width: 1064px;
+    margin: 0 auto;
+    height: 100%;
     display: flex;
     flex-wrap: wrap;
     align-items: center;

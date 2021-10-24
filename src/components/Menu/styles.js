@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export const Button = styled.button`
   position: fixed;
-  top: 15px;
+  top: 5px;
   left: 20px;
   z-index: 2;
   background-color: transparent;

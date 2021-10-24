@@ -9,7 +9,7 @@ export const UserProvider = ({ children }) => {
   const [token, setToken] = useState(
     JSON.parse(localStorage.getItem("authToken")) || ""
   );
-
+  const [user, setUser] = useState([]);
   const history = useHistory();
 
   const createUser = (data) => {
@@ -22,6 +22,27 @@ export const UserProvider = ({ children }) => {
       .catch((_) => toast.error("Email já cadastrado!"));
   };
 
+  const updateUser = (data) => {
+    api
+      .put("/users/profile", data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((_) => {
+        toast.success("Informações do usuário Atualizado!");
+        loadUser();
+      });
+  };
+
+  const loadUser = () => {
+    const id = JSON.parse(localStorage.getItem("authId")) || "";
+    api.get(`/users/${id}`).then((res) => {
+      const { name, email, contact, bio } = res.data;
+      setUser({ name: name, email: email, contact: contact, bio: bio });
+    });
+  };
+
   const login = (data) => {
     api
       .post("/sessions", data)
@@ -32,6 +53,7 @@ export const UserProvider = ({ children }) => {
         localStorage.setItem("authToken", JSON.stringify(token));
         localStorage.setItem("authId", JSON.stringify(id));
         setToken(token);
+        loadUser();
         toast.success("Bem vindo");
 
         return history.push(`/dashboard/${id}`);
@@ -40,7 +62,18 @@ export const UserProvider = ({ children }) => {
   };
 
   return (
-    <UserContext.Provider value={{ createUser, login, token, setToken }}>
+    <UserContext.Provider
+      value={{
+        createUser,
+        login,
+        token,
+        setToken,
+        user,
+        setUser,
+        loadUser,
+        updateUser,
+      }}
+    >
       {children}
     </UserContext.Provider>
   );
